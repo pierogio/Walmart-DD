@@ -1,5 +1,7 @@
-import Classes.Character;
-import Interfaces.Attacker;
+package classes;
+
+import classes.Character;
+import interfaces.Attacker;
 
 public class Warriors extends Character implements Attacker {
     private int stamina;
