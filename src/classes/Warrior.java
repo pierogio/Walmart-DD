@@ -1,13 +1,12 @@
 package classes;
 
-import classes.Character;
 import interfaces.Attacker;
 
-public class Warriors extends Character implements Attacker {
+public class Warrior extends Character implements Attacker {
     private int stamina;
     private int strength;
 
-    public Warriors(String name, int hp, int stamina, int strength) {
+    public Warrior(String name, int hp, int stamina, int strength) {
         super(name, hp);
         this.stamina = stamina;
         this.strength = strength;
