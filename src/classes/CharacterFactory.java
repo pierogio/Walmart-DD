@@ -3,7 +3,7 @@ package classes;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class CharacterFactory {
+public abstract class CharacterFactory {
 
     private final String[] names = {"Marge", "Bart", "Apu", "Lisa"};
     Random r = new Random();

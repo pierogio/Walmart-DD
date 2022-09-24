@@ -5,7 +5,7 @@ public abstract class Character {
     private String name;
     private int hp;
     private boolean isAlive;
-    private int counter = 0;
+    private static int counter = 0;
 
     public Character(String name, int hp) {
         setName(name);
