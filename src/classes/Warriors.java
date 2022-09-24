@@ -1,12 +1,14 @@
-import Classes.Character;
-import Interfaces.Attacker;
+package classes;
+
+import classes.Character;
+import interfaces.Attacker;
 
 public class Warriors extends Character implements Attacker {
     private int stamina;
     private int strength;
 
-    public Warriors(String name, int hp, boolean isAlive, int stamina, int strength) {
-        super(name, hp, isAlive);
+    public Warriors(String name, int hp, int stamina, int strength) {
+        super(name, hp);
         this.stamina = stamina;
         this.strength = strength;
     }
@@ -28,12 +30,12 @@ public class Warriors extends Character implements Attacker {
     }
 
     @Override
-    public int attack() {
+    public int Attack() {
         return 0;
     }
 
     @Override
-    public int damage(int damage) {
+    public int Damage(int damage) {
         return 0;
     }
 }
