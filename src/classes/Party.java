@@ -43,6 +43,10 @@ public class Party {
         listOfCharacters.remove(index);
     }
 
+    public boolean isVoid(){
+        return listOfCharacters.size() == 0;
+    }
+
     public String toString() {
         return "Party {" +
                 "name='" + name + '\'' +

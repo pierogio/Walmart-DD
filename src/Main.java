@@ -1,18 +1,15 @@
+import classes.*;
 import classes.Character;
-import classes.RandomUtils;
-import classes.WarriorFactory;
-import classes.WizardFactory;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    private static final String PARTY1_NAME = "party1";
-    private static final String PARTY2_NAME = "party2";
     private static final Scanner INPUT = new Scanner(System.in);
-    private static ArrayList<Character> party1 = new ArrayList<>();
-    private static ArrayList<Character> party2 = new ArrayList<>();
-    private static String selectedPartyName;
+    private static final Party party1 = new Party("party1");
+    private static final Party party2 = new Party("party2");
+
+    private static Party selectedParty;
 
     public static void main(String[] args) {
         mainMenu();
@@ -29,10 +26,10 @@ public class Main {
 
         switch (selection) {
             case 1:
-                selectPartiesMenu(party1, party2);
+                selectPartiesMenu();
                 break;
             case 2:
-                if(party1.size() == 0 || party2.size() == 0) {
+                if(party1.isVoid() || party2.isVoid()) {
                     System.err.println("Select parties");
                     mainMenu();
                 }
@@ -47,17 +44,17 @@ public class Main {
         }
     }
 
-    public static void selectPartiesMenu(ArrayList<Character> party1, ArrayList<Character> party2) {
+    public static void selectPartiesMenu() {
         int selection;
-        if (party1.size() > 0) {
-            System.out.println("1 - Change party-1");
-        } else {
+        if (party1.isVoid()) {
             System.out.println("1 - Select party-1");
-        }
-        if (party2.size() > 0) {
-            System.out.println("2 - Change party-2");
         } else {
+            System.out.println("1 - Change party-1");
+        }
+        if (party2.isVoid()) {
             System.out.println("2 - Select party-2");
+        } else {
+            System.out.println("2 - Change party-2");
         }
         System.out.println("3 - Done");
         System.out.println("Select option:");
@@ -66,23 +63,23 @@ public class Main {
 
         switch (selection) {
             case 1 -> {
-                selectedPartyName = PARTY1_NAME;
+                selectedParty = party1;
                 partyMenu();
             }
             case 2 -> {
-                selectedPartyName = PARTY2_NAME;
+                selectedParty = party2;
                 partyMenu();
             }
             case 3 -> mainMenu();
             default -> {
                 System.err.println("Please select one of these options:");
-                selectPartiesMenu(party1, party2);
+                selectPartiesMenu();
             }
         }
     }
 
     public static void partyMenu() {
-        System.out.println(selectedPartyName);
+        System.out.println(selectedParty.getName());
         System.out.println("1 - Create character");
         System.out.println("2 - Random party");
         System.out.println("3 - Import party");
@@ -93,14 +90,9 @@ public class Main {
         switch (selection) {
             case 1 -> System.out.println("Create character"); //FUNCTIONALITY PENDING
             case 2 -> {
-                if (selectedPartyName.equals(PARTY1_NAME)) {
-                    party1 = createRandomParty();
-                    System.out.println(selectedPartyName + " has been created: " + party1.toString());
-                } else {
-                    party2 = createRandomParty();
-                    System.out.println(selectedPartyName + " has been created: " + party2.toString());
-                }
-                selectPartiesMenu(party1, party2);
+                selectedParty.setListOfCharacters(createRandomParty());
+                System.out.println(selectedParty.getName() + " has been created: " + selectedParty.toString());
+                selectPartiesMenu();
             }
         }
     }
