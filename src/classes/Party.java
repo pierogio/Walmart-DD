@@ -47,6 +47,22 @@ public class Party {
         return listOfCharacters.size() == 0;
     }
 
+    public void createRandom(int numCharacters) {
+        ArrayList<Character> randomParty = new ArrayList<>();
+        WarriorFactory warriorFactory = new WarriorFactory();
+        WizardFactory wizardFactory = new WizardFactory();
+
+        while (randomParty.size() < numCharacters) {
+            int randomNum = RandomUtils.getRandomIntInRange(1, 0);
+            if (randomNum == 1) {
+                randomParty.add(warriorFactory.create(randomParty));
+            } else {
+                randomParty.add(wizardFactory.create(randomParty));
+            }
+        }
+        listOfCharacters = randomParty;
+    }
+
     public String toString() {
         return "Party {" +
                 "name='" + name + '\'' +

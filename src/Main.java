@@ -90,7 +90,7 @@ public class Main {
         switch (selection) {
             case 1 -> System.out.println("Create character"); //FUNCTIONALITY PENDING
             case 2 -> {
-                selectedParty.setListOfCharacters(createRandomParty());
+                selectedParty.createRandom(3);
                 System.out.println(selectedParty.getName() + " has been created: " + selectedParty.toString());
                 selectPartiesMenu();
             }
@@ -122,22 +122,5 @@ public class Main {
             case 4:
                //Battle method pending
         }
-    }
-
-    public static ArrayList<Character> createRandomParty() {
-        ArrayList<Character> randomParty = new ArrayList<>();
-        WarriorFactory warriorFactory = new WarriorFactory();
-        WizardFactory wizardFactory = new WizardFactory();
-
-        while (randomParty.size() < 3) {
-            int randomNum = RandomUtils.getRandomIntInRange(1, 0);
-            if (randomNum == 1) {
-                randomParty.add(warriorFactory.create(randomParty));
-            } else {
-                randomParty.add(wizardFactory.create(randomParty));
-            }
-        }
-
-        return randomParty;
     }
 }
