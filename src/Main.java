@@ -1,5 +1,6 @@
 import classes.*;
 import classes.Character;
+import interfaces.Attacker;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,6 +13,8 @@ public class Main {
     private static final Party party2 = new Party("party2");
 
     private static Party selectedParty;
+    private static Character char1SelectedToCombat;
+    private static Character char2SelectedToCombat;
 
     public static void main(String[] args) throws FileNotFoundException {
         mainMenu();
@@ -102,32 +105,6 @@ public class Main {
         }
     }
 
-    public static void battleMenu() {
-
-        System.out.println("1 - Show graveyard");
-        System.out.println("2 - Choose party-1 Character");
-        System.out.println("3 - Choose party-2 Character");
-        System.out.println("4 - Start!");
-        System.out.println("Select option:");
-
-        int selection = INPUT.nextInt();
-
-        switch (selection) {
-            case 1:
-                System.out.println("show graveyard"); //PENDING
-                break;
-            case 2:
-                //Chose character method pending
-                battleMenu();
-                break;
-            case 3:
-                //Chose character method pending
-                battleMenu();
-                break;
-            case 4:
-               //Battle method pending
-        }
-    }
     public static void createCharacterMenu() throws FileNotFoundException {
         System.out.println(selectedParty.getName());
         System.out.println("1 - Add wizard");
@@ -215,7 +192,69 @@ public class Main {
         }
     }
 
+    public static Character chooseCharToBattle(Party party) {
+        System.out.println("Choose charater of " +  party.getName());
+        for (int i = 0; i < party.size(); i++) System.out.println(i + 1 + " - " + party.getCharacter(i));
+        int choosedCharIndex = INPUT.nextInt() - 1;
+        Character charSelected = party.getCharacter(choosedCharIndex);
+        return charSelected;
+    }
 
+    public static void battleMenu() {
+        if (char1SelectedToCombat != null) System.out.println("2 - Change party-1 Character - " + char1SelectedToCombat);
+        else System.out.println("2 - Choose party-1 Character");
+        if (char2SelectedToCombat != null) System.out.println("3 - Change party-2 Character - " + char2SelectedToCombat);
+        else System.out.println("3 - Choose party-2 Character");
+        System.out.println("4 - Start!");
+        System.out.print("Select option :");
 
+        int selection = INPUT.nextInt();
 
+        switch (selection) {
+            case 1:
+                System.out.println("show graveyard"); //PENDING
+                break;
+            case 2:
+                char1SelectedToCombat = chooseCharToBattle(party1);
+                battleMenu();
+                break;
+            case 3:
+                char2SelectedToCombat = chooseCharToBattle(party2);
+                battleMenu();
+                break;
+            case 4:
+                if (char1SelectedToCombat != null && char2SelectedToCombat != null) battle(char1SelectedToCombat, char2SelectedToCombat);
+                else if (char1SelectedToCombat == null && char2SelectedToCombat == null) {
+                    System.err.println("Select characters to combat");
+                    battleMenu();
+                } else if (char1SelectedToCombat == null ) {
+                    System.err.println("Select character of party " + party1.getName());
+                    battleMenu();
+                }
+                else {
+                    System.err.println("Select character of party " + party2.getName());
+                    battleMenu();
+                }
+        }
+    }
+
+    public static void battle(Character characterParty1, Character characterParty2 ) {
+        while(characterParty1.isAlive() && characterParty2.isAlive()) {
+            Attacker attacker1 = (Attacker) characterParty1;
+            Attacker attacker2 = (Attacker) characterParty2;
+            int attackPointsAttacker1 = attacker1.attack();
+            int attackPointsAttacker2 = attacker2.attack();
+            attacker2.damage(attackPointsAttacker1);
+            attacker1.damage(attackPointsAttacker2);
+
+            System.out.println(characterParty1.getName() + " has been attack with " + attackPointsAttacker2 + " points and now has " + characterParty1.getHp() + " points of HP");
+            System.out.println(characterParty2.getName() + " has been attack with " + attackPointsAttacker1 + " points and now has " + characterParty2.getHp() + " points of HP");
+        }
+        if (!characterParty1.isAlive() && !characterParty2.isAlive()) {
+            System.out.println("Ups, both are death =(");
+        }
+        else if (characterParty1.isAlive()) {
+            System.out.println("The winner is " + characterParty1.getName() + " of " + party1.getName());
+        } else System.out.println("The winner is " + characterParty2.getName() + " of " + party2.getName());
+    }
 }
