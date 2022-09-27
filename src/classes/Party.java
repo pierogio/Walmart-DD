@@ -47,6 +47,10 @@ public class Party {
         return listOfCharacters.size() == 0;
     }
 
+    public int size(){
+        return listOfCharacters.size();
+    }
+
     public void createRandom(int numCharacters) {
         ArrayList<Character> randomParty = new ArrayList<>();
         WarriorFactory warriorFactory = new WarriorFactory();
