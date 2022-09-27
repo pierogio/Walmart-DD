@@ -36,8 +36,11 @@ public class Warrior extends Character implements Attacker {
     }
 
     public void damage(int damage) {
-        super.setHp(super.getHp()-damage);
-        if(super.getHp() <= 0) super.setIsAlive(false);
+        if (super.getHp() > damage) super.setHp(getHp()-damage);
+        else {
+            super.setHp(0);
+            super.setIsAlive(false);
+        }
     }
 
 

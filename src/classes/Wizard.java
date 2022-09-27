@@ -31,16 +31,16 @@ public class Wizard extends Character implements Attacker {
         this.intelligence = intelligence;
     }
 
-    public int Attack() {
-        return mana > FIREBALL_ATTACK_COST ? FireballAttack() : StaffHitAttack();
+    public int attack() {
+        return mana > FIREBALL_ATTACK_COST ? fireballAttack() : staffHitAttack();
     }
 
-    private int FireballAttack() {
+    private int fireballAttack() {
         this.mana -= FIREBALL_ATTACK_COST;
         return this.intelligence;
     }
 
-    private int StaffHitAttack() {
+    private int staffHitAttack() {
         this.mana += 1;
         return 2;
     }
@@ -55,12 +55,11 @@ public class Wizard extends Character implements Attacker {
     }
 
 
-    public int Damage(int damage) {
+    public void damage(int damage) {
         if (super.getHp() > damage) super.setHp(getHp()-damage);
         else {
             super.setHp(0);
             super.setIsAlive(false);
         }
-        return 0;
     }
 }

@@ -1,6 +1,7 @@
 import classes.*;
 import classes.Character;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,18 +12,17 @@ public class Main {
 
     private static Party selectedParty;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         mainMenu();
     }
 
-    public static void mainMenu() {
-        int selection;
+    public static void mainMenu() throws FileNotFoundException {
         System.out.println("1 - Select parties");
         System.out.println("2 - Start battle");
         System.out.println("3 - Exit");
         System.out.println("Select option:");
 
-        selection = INPUT.nextInt();
+        int selection = INPUT.nextInt();
 
         switch (selection) {
             case 1:
@@ -44,8 +44,7 @@ public class Main {
         }
     }
 
-    public static void selectPartiesMenu() {
-        int selection;
+    public static void selectPartiesMenu() throws FileNotFoundException {
         if (party1.isVoid()) {
             System.out.println("1 - Select party-1");
         } else {
@@ -59,7 +58,7 @@ public class Main {
         System.out.println("3 - Done");
         System.out.println("Select option:");
 
-        selection = INPUT.nextInt();
+        int selection = INPUT.nextInt();
 
         switch (selection) {
             case 1 -> {
@@ -78,7 +77,7 @@ public class Main {
         }
     }
 
-    public static void partyMenu() {
+    public static void partyMenu() throws FileNotFoundException {
         System.out.println(selectedParty.getName());
         System.out.println("1 - Create character");
         System.out.println("2 - Random party");
@@ -88,7 +87,7 @@ public class Main {
         int selection = INPUT.nextInt();
 
         switch (selection) {
-            case 1 -> System.out.println("Create character"); //FUNCTIONALITY PENDING
+            case 1 -> createCharacterMenu();
             case 2 -> {
                 selectedParty.createRandom(3);
                 System.out.println(selectedParty.getName() + " has been created: " + selectedParty.toString());
@@ -123,4 +122,69 @@ public class Main {
                //Battle method pending
         }
     }
+    public static void createCharacterMenu() throws FileNotFoundException {
+        System.out.println(selectedParty.getName());
+        System.out.println("1 - Add wizard");
+        System.out.println("2 - Add warrior");
+        System.out.println("3 - Done");
+        System.out.println("Select option:");
+
+        int selection = INPUT.nextInt();
+
+        switch (selection) {
+            case 1:
+                selectedParty.addCharacter(createWizard());
+                createCharacterMenu();
+                break;
+            case 2:
+                selectedParty.addCharacter(createWarrior());
+                createCharacterMenu();
+                break;
+            case 3:
+                selectPartiesMenu();
+                break;
+        }
+    }
+
+    public static Character createWizard(){
+        System.out.print("Name: ");
+        INPUT.nextLine();
+        String wizardName = INPUT.nextLine();
+        System.out.print("HP: ");
+        int hpPoints = INPUT.nextInt();
+        INPUT.nextLine();
+        System.out.print("Mana: ");
+        int manaPoints = INPUT.nextInt();
+        INPUT.nextLine();
+        System.out.print("Intelligence: ");
+        int intelligencePoints = INPUT.nextInt();
+        INPUT.nextLine();
+
+        Character newWizard = new Wizard(wizardName, hpPoints, manaPoints, intelligencePoints);
+        System.out.println(newWizard + " has been created");
+
+        return newWizard;
+    }
+
+    public static Character createWarrior(){
+        System.out.print("Name: ");
+        INPUT.nextLine();
+        String warriorName = INPUT.nextLine();
+        System.out.print("HP: ");
+        int hpPoints = INPUT.nextInt();
+        INPUT.nextLine();
+        System.out.print("Stamina: ");
+        int staminaPoints = INPUT.nextInt();
+        INPUT.nextLine();
+        System.out.print("Strength: ");
+        int strengthPoints = INPUT.nextInt();
+        INPUT.nextLine();
+
+        Character newWarrior = new Warrior(warriorName, hpPoints, staminaPoints, strengthPoints);
+        System.out.println(newWarrior + " has been created");
+
+        return newWarrior;
+    }
+
+
 }
