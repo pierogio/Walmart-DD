@@ -1,6 +1,7 @@
 import classes.*;
 import classes.Character;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -91,6 +92,11 @@ public class Main {
             case 2 -> {
                 selectedParty.createRandom(3);
                 System.out.println(selectedParty.getName() + " has been created: " + selectedParty.toString());
+                selectPartiesMenu();
+            }
+            case 3 -> {
+                importCSV();
+                System.out.println(selectedParty.getName() + " has been imported: " + selectedParty.toString());
                 selectPartiesMenu();
             }
         }
@@ -185,6 +191,31 @@ public class Main {
 
         return newWarrior;
     }
+
+    public static void importCSV() throws FileNotFoundException {
+        ArrayList<Character> importedParty = new ArrayList<>();
+        File partyCSV = new File("party.csv");
+        Scanner scanner = new Scanner(partyCSV);
+        scanner.nextLine();
+        while (scanner.hasNextLine()) {
+            //System.out.println(scanner.nextLine());
+            String[] characterProperties = scanner.nextLine().split(",");
+            String charType = characterProperties[0];
+            String charName = characterProperties[1];
+            int charHP = Integer.parseInt(characterProperties[2]);
+            int charManaOrStamina = Integer.parseInt(characterProperties[3]);
+            int charIntelOrStrength = Integer.parseInt(characterProperties[4]);
+            if (charType.equals("wizard")) {
+                importedParty.add(new Wizard(charName, charHP, charManaOrStamina, charIntelOrStrength));
+            } else {
+                importedParty.add(new Warrior(charName, charHP, charManaOrStamina, charIntelOrStrength));
+            }
+            selectedParty.setListOfCharacters(importedParty);
+            characterProperties = new String[4];
+        }
+    }
+
+
 
 
 }
