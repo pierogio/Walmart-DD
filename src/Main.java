@@ -201,12 +201,13 @@ public class Main {
     }
 
     public static void battleMenu() {
+        System.out.println("1 - Show graveyard");
         if (char1SelectedToCombat != null) System.out.println("2 - Change party-1 Character - " + char1SelectedToCombat);
         else System.out.println("2 - Choose party-1 Character");
         if (char2SelectedToCombat != null) System.out.println("3 - Change party-2 Character - " + char2SelectedToCombat);
         else System.out.println("3 - Choose party-2 Character");
         System.out.println("4 - Start!");
-        System.out.print("Select option :");
+        System.out.print("Select option: ");
 
         int selection = INPUT.nextInt();
 
