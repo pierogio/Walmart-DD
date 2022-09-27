@@ -6,10 +6,12 @@ public class Warrior extends Character implements Attacker {
     private int stamina;
     private int strength;
 
+    private final int HEAVY_ATTACK_COST = 5;
+
     public Warrior(String name, int hp, int stamina, int strength) {
         super(name, hp);
-        this.stamina = stamina;
-        this.strength = strength;
+        setStamina(stamina);
+        setStrength(strength);
     }
 
     public int getStamina() {
@@ -28,13 +30,34 @@ public class Warrior extends Character implements Attacker {
         this.strength = strength;
     }
 
-    @Override
-    public int Attack() {
-        return 0;
+
+    public int attack() {
+        return stamina > HEAVY_ATTACK_COST ? heavyAttack() : weakAttack();
     }
 
-    @Override
-    public int Damage(int damage) {
-        return 0;
+    public void damage(int damage) {
+        super.setHp(super.getHp()-damage);
+        if(super.getHp() <= 0) super.setIsAlive(false);
+    }
+
+
+    private int heavyAttack() {
+        this.stamina -= HEAVY_ATTACK_COST;
+        return this.strength;
+    }
+
+    private int weakAttack() {
+        this.stamina += 1;
+        return (int)this.strength/2;
+    }
+
+    public String toString() {
+        return "Warrior {" +
+                "name=" + super.getName() +
+                ", HP=" + super.getHp() +
+                ", stamina=" + stamina +
+                ", strength=" + strength +
+                ", HEAVY_ATTACK_COST=" + HEAVY_ATTACK_COST +
+                '}';
     }
 }
