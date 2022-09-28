@@ -25,7 +25,7 @@ public class WarriorFactory extends CharacterFactory {
         return RandomUtils.getRandomIntInRange(MAX_STRENGTH, MIN_STRENGTH);
     }
 
-    public Character create(ArrayList<Character> party) {
+    public Character createRandom(ArrayList<Character> party) {
         return new Warrior(super.getRandomName(party), this.getRandomHp(), this.getRandomStamina(), this.getRandomStrength());
     }
 }
