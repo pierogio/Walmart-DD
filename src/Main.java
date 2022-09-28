@@ -47,7 +47,7 @@ public class Main {
                 INPUT.close();
                 break;
             default:
-                System.out.println("Please select one of these options:");
+                System.err.println("Please select one of these options:");
                 mainMenu();
         }
     }
@@ -97,7 +97,9 @@ public class Main {
         switch (selection) {
             case 1 -> createCharacterMenu();
             case 2 -> {
-                selectedParty.createRandom(3);
+                System.out.print("Num of characters: ");
+                int numCharacters = INPUT.nextInt();
+                selectedParty.createRandom(numCharacters);
                 System.out.println(selectedParty.getName() + " has been created: " + selectedParty.toString());
                 selectPartiesMenu();
             }
@@ -105,6 +107,10 @@ public class Main {
                 importCSV();
                 System.out.println(selectedParty.getName() + " has been imported: " + selectedParty.toString());
                 selectPartiesMenu();
+            }
+            default -> {
+                System.err.println("Please select one of these options:");
+                partyMenu();
             }
         }
     }
@@ -130,6 +136,9 @@ public class Main {
             case 3:
                 selectPartiesMenu();
                 break;
+            default:
+                System.err.println("Please select one of these options:");
+                createCharacterMenu();
         }
     }
 
@@ -235,17 +244,17 @@ public class Main {
                     else {
                         System.err.println("Select character of party " + party2.getName());
                     }
+                default:
+                    System.err.println("Please select one of these options:");
             }
-    }if(!party1.isVoid() && party2.isVoid()){
+        }
+        if(!party1.isVoid() && party2.isVoid()) {
             System.out.println(party1.getName()+" won!");
             party1.unselect();
-        }
-
-        else if(party1.isVoid() && !party2.isVoid()){
+        } else if(party1.isVoid() && !party2.isVoid()) {
             System.out.println(party2.getName()+" won!");
             party2.unselect();
-        }
-        else if(party1.isVoid() && party2.isVoid()){
+        } else if(party1.isVoid() && party2.isVoid()) {
             System.out.println("Draw!");
         }
         mainMenu();

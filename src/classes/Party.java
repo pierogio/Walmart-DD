@@ -1,7 +1,6 @@
 package classes;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Party {
     private String name;
@@ -64,9 +63,9 @@ public class Party {
         while (randomParty.size() < numCharacters) {
             int randomNum = RandomUtils.getRandomIntInRange(1, 0);
             if (randomNum == 1) {
-                randomParty.add(warriorFactory.create(randomParty));
+                randomParty.add(warriorFactory.createRandom(randomParty));
             } else {
-                randomParty.add(wizardFactory.create(randomParty));
+                randomParty.add(wizardFactory.createRandom(randomParty));
             }
         }
         listOfCharacters = randomParty;

@@ -24,7 +24,7 @@ public class WizardFactory extends CharacterFactory {
         return RandomUtils.getRandomIntInRange(MAX_INTELLIGENCE, MIN_INTELLIGENCE);
     }
 
-    public Character create(ArrayList<Character> party) {
+    public Character createRandom(ArrayList<Character> party) {
         return new Wizard(super.getRandomName(party), this.getRandomHp(), this.getRandomMana(), this.getRandomIntelligence());
     }
 }
