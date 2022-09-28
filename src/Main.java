@@ -97,7 +97,9 @@ public class Main {
         switch (selection) {
             case 1 -> createCharacterMenu();
             case 2 -> {
-                selectedParty.createRandom(3);
+                System.out.print("Num of characters: ");
+                int numCharacters = INPUT.nextInt();
+                selectedParty.createRandom(numCharacters);
                 System.out.println(selectedParty.getName() + " has been created: " + selectedParty.toString());
                 selectPartiesMenu();
             }
