@@ -269,8 +269,8 @@ public class Main {
             attacker2.damage(attackPointsAttacker1);
             attacker1.damage(attackPointsAttacker2);
 
-            System.out.println(characterParty1.getName() + " has been attack with " + attackPointsAttacker2 + " points and now has " + characterParty1.getHp() + " points of HP");
-            System.out.println(characterParty2.getName() + " has been attack with " + attackPointsAttacker1 + " points and now has " + characterParty2.getHp() + " points of HP");
+            System.out.println(characterParty1.getName() + " has been attacked and has suffered " + attackPointsAttacker2 + " damage and now has " + characterParty1.getHp() + " health points!");
+            System.out.println(characterParty2.getName() + " has been attacked and has suffered " + attackPointsAttacker1 + " damage and now has " + characterParty2.getHp() + " health points!");
         }
         if (!characterParty1.isAlive() && !characterParty2.isAlive()) {
            graveyard.add(characterParty1);
@@ -292,19 +292,5 @@ public class Main {
         char1SelectedToCombat=null;
         char2SelectedToCombat=null;
         battleMenu();
-    }
-
-
-    public void showCharacters () throws FileNotFoundException {
-        File charactersFile = new File("characters.csv");
-        Scanner charactersFileReader = new Scanner(charactersFile);
-        while(charactersFileReader.hasNextLine()){
-            System.out.println(charactersFileReader.nextLine());
-        }
-    }
-    public void saveCharacter (ArrayList<Character> specific, int index) throws IOException {
-        FileWriter charactersFile = new FileWriter ("characters.csv", true);
-        charactersFile.write(specific.get(index).toString());
-        charactersFile.close();
     }
 }
