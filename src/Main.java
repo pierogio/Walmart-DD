@@ -44,7 +44,7 @@ public class Main {
                 else battleMenu();
                 break;
             case 3:
-                INPUT.close();
+                System.exit(0);
                 break;
             default:
                 System.err.println("Please select one of these options:");
