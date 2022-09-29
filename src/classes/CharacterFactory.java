@@ -5,7 +5,7 @@ import java.util.Random;
 
 public abstract class CharacterFactory {
 
-    private final String[] names = {"Marge", "Bart", "Apu", "Lisa"};
+    private final String[] names = {"Marge", "Bart", "Apu", "Lisa", "Homer", "Ned", "Sr Burns", "Krusty", "Nelson", "Milhouse", "Moe", "Barney", "Ralph", "Patty", "Selma"};
     Random r = new Random();
 
     protected String getRandomName(ArrayList<Character> party) {

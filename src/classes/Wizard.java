@@ -46,11 +46,10 @@ public class Wizard extends Character implements Attacker {
     }
 
     public String toString() {
-        return "Wizard{" +
-                "name=" + super.getName() +
-                "mana=" + mana +
+        return "Wizard {" +
+                "name= " + super.getName() +
+                ", mana=" + mana +
                 ", intelligence=" + intelligence +
-                ", FIREBALL_ATTACK_COST=" + FIREBALL_ATTACK_COST +
                 '}';
     }
 

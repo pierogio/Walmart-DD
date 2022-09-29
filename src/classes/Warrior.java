@@ -60,7 +60,6 @@ public class Warrior extends Character implements Attacker {
                 ", HP=" + super.getHp() +
                 ", stamina=" + stamina +
                 ", strength=" + strength +
-                ", HEAVY_ATTACK_COST=" + HEAVY_ATTACK_COST +
                 '}';
     }
 }
