@@ -1,25 +1,11 @@
 # Walmart-DD
 
-En el primer menú, la opción "Select parties" permite empezar el juego, 
-mientras que "Start battle" no está disponible en este punto del juego 
-y devuelve al menú anterior. 
+In the first menu, the "Select parties" option allows you to start the game, while "Start battle" is not available at this point in the game and returns you to the previous menu.
 
-Exit permite al usuario de salir del juego.
+"Exit" allows the user to exit the game.
 
-En el menú sucesivo la opción "Select party-1/2" 
-permite acceder al siguiente menú y escoger el grupo de jugadores, 
-mientras que "Done" devuelve al menú anterior.
+In the subsequent menu, the "Select party-1/2" option allows you to access the next menu and choose the group of players, while "Done" returns you to the previous menu.
 
-En el tercer menú a través de "Create character" es posible crear 
-personajes, escogiendo entre las clases guerrero y hechicero, 
-asignando manualmente el nombre y fijando los atributos del mismo; 
-en este mismo menú la opción "Random party" permite empezar una 
-partida con personajes aleatorios, seleccionando manualmente el 
-número de los mismos que se quieran usar.
+In the third menu, "Create character" allows you to create characters by choosing between the warrior and wizard classes, manually assigning the name and setting their attributes. In this same menu, the "Random party" option allows you to start a game with random characters, manually selecting the number of characters you want to use.
 
-Una vez seleccionados o creados los jugadores y confirmado la 
-selección con "Done", se podrá empezar la batalla con "Start battle".
-La estadística de la batalla se reflejará en la pantalla. 
-Será también posible acceder al cementerio para ver los jugadores caídos.
-
-
+Once the players are selected or created, and the selection is confirmed with "Done," you can start the battle with "Start battle." The battle statistics will be displayed on the screen. You can also access the graveyard to view fallen players.
